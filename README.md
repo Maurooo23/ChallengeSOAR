@@ -2,7 +2,7 @@
 Este proyecto simula una especie de soar para la ingestión, enriquecimiento, triage y respuesta de incidentes de ciberseguridad. Ademas procesa alertas en formato JSON, aplica reglas de enriquecimiento a traves de proveedor hardcodiados, calcula severidad y técnicas MITRE, y genera salidas en JSON, Markdown y logs.
 
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 1. **Ingesta:**  
    mapea la alerta original e inicializa un incidente con indicadores (IP, dominios, URLs, hashes, etc.) dependiendo de lo que extraiga del json inicial.
@@ -31,32 +31,7 @@ Este proyecto simula una especie de soar para la ingestión, enriquecimiento, tr
 
 ---
 
-## 📂 Estructura del proyecto
-
-ChallengeSOAR/
-├── alerts/
-│ ├── sentinel.json
-│ └── sumologic.json
-├── configs/
-│ ├── allowlists.yml
-│ ├── connectors.yml
-│ └── mitre_map.yml
-├── mocks/
-│ └── it/
-│   ├── Anomali.json
-│   ├── Defender_TI.json
-│   └── ReversingLabs.json
-├── out/
-│ ├── incidents/ # Incidentes en JSON
-│ ├── summaries/ # Reportes en Markdown
-│ └── isolation.log
-├── main.py # Script principal
-├── requirements.txt
-└── README.md
-
----
-
-## ⚙️ Instalación
+##  Instalación
 
 Clonar el repositorio y luego instalar dependencias:
 
@@ -64,7 +39,7 @@ Clonar el repositorio y luego instalar dependencias:
 pip install -r requirements.txt
 ```
 
-## ▶️ Uso
+##  Uso
 
 python main.py alerts/sentinel.json
 
