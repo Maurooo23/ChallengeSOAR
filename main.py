@@ -7,12 +7,14 @@ from jinja2 import Template
 from pathlib import Path
 
 #funciones para poder obtener los archivos del challenge
-def load_json(obj):
-    return json.load(open(obj))
+def load_json(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-def load_yaml(yml):
-    return json.load(open(yml))
-
+def load_yaml(path):
+    with open(path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+    
 #funcion para poder normar la data.
 def mapeo(alerta):
     #alert = json.loads(alerta.read_text(encoding="utf-8"))
@@ -51,7 +53,7 @@ def enrichment_alerta(incidente, providerPath):
         #ioc = ipv4, domain, etc.
         #print(iocs)
         valor = iocs["value"]
-        type = iocs["type"]
+        #type = iocs["type"]
         #print(type)
         #valor = 1.2.3.4, bad....
         risk = {"verdict": "unknown", "score": 0, "sources": []}
@@ -182,7 +184,7 @@ def isolation(incidente):
         out_dir.mkdir(exist_ok=True)
         log_file = out_dir / "isolation.log"
         with log_file.open("a", encoding="utf-8") as f:
-            f.write(f"{today} isolate device_id{device_id} incident={incidente["incident_id"]} result=isolated\n")
+            f.write(f"{today} isolate device_id{device_id} incident={incidente['incident_id']} result=isolated\n")
 
     incidente["actions"] = actions
     if actions:
@@ -197,13 +199,14 @@ def isolation(incidente):
             "ts": datetime.utcnow().isoformat(),
             "details": "No se ejecutaron acciones"
         })
-        return incidente    
+    
+    return incidente    
 
 #guardamos json
 def guardar_incidente(incidente):
     ruta = Path("out/incidents")
     ruta.mkdir(parents=True, exist_ok=True)
-    path = ruta / f"{incidente["incident_id"]}.json"
+    path = ruta / f"{incidente['incident_id']}.json"
 
     with path.open("w", encoding="utf-8") as f:
         json.dump(incidente, f, indent=2)
@@ -214,7 +217,7 @@ def guardar_incidente(incidente):
 def template_jinja(incidente):
     ruta = Path("out/summaries")
     ruta.mkdir(parents=True, exist_ok=True)
-    path = ruta / f"{incidente["incident_id"]}.md"
+    path = ruta / f"{incidente['incident_id']}.md"
 
     template_jinja = """ 
 # Incident Report: {{ incidente.incident_id }}
@@ -230,7 +233,7 @@ def template_jinja(incidente):
 {% endfor %}
 
 ## MITRE ATT&CK
-Techniques: {{ incidente.mitre.techniques | join(", ") }}
+Techniques: {{ incidente.mitre.tecnicas | join(", ") }}
 
 ## Actions
 {% if incidente.actions %}

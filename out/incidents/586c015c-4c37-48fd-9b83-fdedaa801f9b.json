@@ -1,5 +1,5 @@
 {
-  "incident_id": "be88002b-d31d-4e8f-8b9f-31f9a794a2cc",
+  "incident_id": "586c015c-4c37-48fd-9b83-fdedaa801f9b",
   "source_alert": {
     "alert_id": "sen-001",
     "source": "sentinel",
@@ -100,28 +100,28 @@
       "type": "isolate",
       "target": "device:dev-9001",
       "result": "isolated",
-      "ts": "2025-09-30T22:40:24.976292"
+      "ts": "2025-10-01T03:37:31.690350"
     }
   ],
   "timeline": [
     {
       "stage": "ingesta",
-      "date": "2025-09-30T22:40:24.976292",
+      "date": "2025-10-01T03:37:31.685175",
       "details": "Alerta mapeada e incidente creado con exito."
     },
     {
       "stage": "enrichment",
-      "date": "2025-09-30T22:40:24.976292",
+      "date": "2025-10-01T03:37:31.688189",
       "details": "Enriquecidos 4 indicadores"
     },
     {
       "stage": "triage",
-      "date": "2025-09-30T22:40:24.976292",
+      "date": "2025-10-01T03:37:31.690350",
       "details": "Severidad Critical (100)"
     },
     {
       "stage": "response",
-      "ts": "2025-09-30T22:40:24.985087",
+      "ts": "2025-10-01T03:37:31.691354",
       "details": "1 accion(es) ejecutadas: ['isolate']"
     }
   ]
